@@ -17,19 +17,24 @@
 <body>
 <?php 
 session_start();
+error_reporting(0);
         $dice_1='';
         $dice_2='';
         
-        
-       
-       $_SESSION['check']=0;
+        //$_SESSION['balance']=100;
+       if($_REQUEST['r']==1)
+        {
+           $_SESSION['balance']=100;
+        }
+
+        $_SESSION['check']=0;
         $sum=0;
         $result=0;
         if(isset($_REQUEST['submit'])){
 
 
         
-        if($_SESSION['check']==0)
+        if($_REQUEST['check']==0)
         {
            $_SESSION['balance']=100;
         }
@@ -53,18 +58,14 @@ session_start();
            if($sum>7 && $option==8)
            {
            	  $result=1;
-           	  $_SESSION['balance']=$_SESSION['balance']+30;
+           	  $_SESSION['balance']=$_SESSION['balance']+20;
            }
 
            if($sum==7 && $option==7)
            {
            	  $result=1;
-           	  $_SESSION['balance']=$_SESSION['balance']+20;
+           	  $_SESSION['balance']=$_SESSION['balance']+30;
            }
-
-           
-           
-           
 
 
       }
@@ -104,6 +105,8 @@ session_start();
         }
 
      	?>
+       <a href="index.php?r=1"><input type="button" name="option"  value="Reset" > </a>
+        <a href="index.php"><input type="button" name="option"  value="Continue" > </a>
      </div>
     <?php } ?>
 
